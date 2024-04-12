@@ -1,0 +1,78 @@
+Basic:
+  log_wandb: True
+  entity: woodoxen
+  project: DeeperNet
+  algorithm: DSAC # SAC, DSAC or PPO
+  action_type:
+    throttle: direct # direct or delta
+    steer: direct
+  action_mask: True
+  expert_demonstarte: True
+  bev_encoder: CNN
+  measurement_encoder: MLP
+  record_interval: 2
+  save_interval: 100
+  single_scence_length: 15
+  spawn_forward: 182
+  override_name: JunctionTurn
+  junction_end_id: 322
+  ckpt_name:
+  eval: 
+
+PearlPara:
+  state_dim: 176
+  actor_hidden_dims:
+    - 512
+    - 256
+    - 256
+    - 128
+    - 64
+  critic_hidden_dims:
+    - 512
+    - 256
+    - 256
+    - 128
+    - 64
+  actor_learning_rate: 0.000005
+  critic_learning_rate: 0.000005
+  discount_factor: 0.99
+  training_rounds: 1
+  batch_size: 1024
+  DSAC:
+    critic_soft_update_tau: 0.005
+    entropy_coef: 0.1
+  PPO:
+    epsilon: 0.01
+    trace_decay_param: 0.95
+    entropy_bonus_scaling: 0.01
+
+ExtraConfig:
+  start_steps: 2000
+  buffer_size: 100_000
+  control_interval: 2  # freq = 20hz / interval
+  throttle_set:
+    - -0.7
+    - -0.4
+    - -0.1
+    - 0.2
+    - 0.4
+    - 0.6
+    - 0.8
+  steer_set:
+    - -0.8
+    - -0.5
+    - -0.2
+    - 0
+    - 0.2
+    - 0.5
+    - 0.8
+
+  route_window_size: 3
+  route_resample: 1
+  state_horizen: 5
+  last_action_resample: 1
+  red_light_resample: 2
+  stop_sign_resample: 2
+  speed_resample: 2
+  speed_limit: 20
+

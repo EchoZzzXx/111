@@ -1,0 +1,42 @@
+Basic:
+  env_num: 3
+  log_wandb: True
+  action_type: discrete
+  algorithm: SAC
+  expert_demonstarte: False
+  action_encode: one-hot
+  bev_encoder: CNN
+  measurement_encoder: MLP
+  record_interval: 10
+  save_interval: 500
+  action_set:
+    - -0.4
+    - -0.2
+    - 0
+    - 0.2
+    - 0.4
+  route_sets:
+    - 0,1
+    - 4,5
+    - 8,9
+
+HyperPara:
+  state_dim: 240
+  lr_actor: 0.000001
+  lr_critic: 0.000001
+  lr_alpha: 0.0001
+  gamma: 0.99
+  initial_temperature: 0.05
+  learn_temperature: False
+  batch_size: 512
+  buffer_size: 1000000
+  debug: True
+
+StateConfig:
+  control_frames: 4
+  route_window_size: 3
+  route_resample: 1
+  last_action_resample: 1
+  red_light_resample: 0
+  stop_sign_resample: 0
+  speed_resample: 2
